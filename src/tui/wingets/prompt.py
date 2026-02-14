@@ -1,6 +1,6 @@
 from textual import messages, on
 from textual.app import ComposeResult
-from textual.widgets import Input, Label
+from textual.widgets import Input, Label, Markdown
 
 from ai.llm.llm import LLM
 
@@ -25,4 +25,4 @@ class PromptInput(Input):
         message_label.border_title = "Me"
         self.app.query_one("#messages").mount(message_label)
         res = self.llm.generate_text(event.value)
-        self.app.query_one("#messages").mount(Label(res))
+        self.app.query_one("#messages").mount(Markdown(res))
