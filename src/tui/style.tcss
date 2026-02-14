@@ -1,0 +1,10 @@
+.me {
+    border: round aqua;
+
+    border-title-color: black;
+    border-title-background: aqua;
+
+    border-subtitle-color: red;
+    border-subtitle-background: yellow;
+    border-subtitle-style: italic;
+}
