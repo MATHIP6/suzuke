@@ -1,13 +1,12 @@
-from ai.llm.g4f import G4Free
+import config
 from tui.app import TuiApp
 
 
 def main():
-    # [print(model) for model in ModelRegistry.all_models()]
-    llm = G4Free()
+    conf = config.load()
+    llm = conf.llm.get_llm()
     app = TuiApp(llm)
     app.run()
-    # print(llm.generate_text("Hello"))
 
 
 if __name__ == "__main__":

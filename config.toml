@@ -1,0 +1,7 @@
+[llm]
+
+
+name = "g4f"
+model = "deepseek-v3"
+#Uncommon this line if you have an API key
+# api_key = "TOKEN"

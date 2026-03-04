@@ -660,12 +660,14 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "g4f" },
+    { name = "platformdirs" },
     { name = "textual" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "g4f", specifier = ">=7.1.1" },
+    { name = "platformdirs", specifier = ">=4.5.1" },
     { name = "textual", specifier = ">=7.3.0" },
 ]
 
