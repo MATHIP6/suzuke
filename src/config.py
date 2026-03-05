@@ -3,9 +3,10 @@ from typing import Optional
 from platformdirs import PlatformDirs
 from shutil import copy
 import tomllib
-from ai.llm.g4f import G4Free
 from ai.llm.llm import LLM
+from ai.llm.g4f import G4Free
 from ai.llm.openai import OpenAI
+from ai.llm.groq import Groq
 
 
 dirs = PlatformDirs("suzuke")
@@ -30,7 +31,11 @@ class LLMConfig:
                     raise Exception("You must have an API Key to use this model")
                 llm = OpenAI(self.api_key)
                 llm.model = self.model
-
+            case "groq":
+                if not self.api_key:
+                    raise Exception("You must have an API Key to use this model")
+                llm = Groq(self.api_key)
+                llm.model = self.model
             case _:
                 raise Exception("Unknown llm name in config")
         return llm
