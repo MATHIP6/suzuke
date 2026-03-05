@@ -5,6 +5,7 @@ from shutil import copy
 import tomllib
 from ai.llm.g4f import G4Free
 from ai.llm.llm import LLM
+from ai.llm.openai import OpenAI
 
 
 dirs = PlatformDirs("suzuke")
@@ -24,6 +25,12 @@ class LLMConfig:
                 llm.model = self.model
                 if self.api_key:
                     llm.set_api_key(self.api_key)
+            case "openai":
+                if not self.api_key:
+                    raise Exception("You must have an API Key to use this model")
+                llm = OpenAI(self.api_key)
+                llm.model = self.model
+
             case _:
                 raise Exception("Unknown llm name in config")
         return llm
@@ -39,9 +46,7 @@ def load():
     if not config_dir.exists():
         config_dir.mkdir(parents=False)
     default_config = Path(__file__).parent.parent / "config.toml"
-    print(default_config)
     config_file = config_dir / "config.toml"
-    print(config_file)
     if not config_file.exists():
         copy(default_config, config_file)
     with open(config_file, "rb") as f:
